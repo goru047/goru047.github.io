@@ -246,6 +246,7 @@
 .leaflet-popup-content-wrapper {
   border-radius: $radius-lg;
   box-shadow: var(--shadow-xl);
+  overflow: hidden;
 }
 
 .leaflet-popup-content {
@@ -269,6 +270,128 @@
   
   &:hover {
     color: var(--text-color);
+  }
+}
+
+// City Markers
+.city-marker {
+  cursor: pointer;
+  transition: all $transition-fast;
+}
+
+.city-tooltip {
+  background-color: rgba(59, 130, 246, 0.95) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: $radius !important;
+  padding: $spacing-2 $spacing-3 !important;
+  font-size: $font-sm !important;
+  font-weight: $font-semibold !important;
+  box-shadow: var(--shadow-lg) !important;
+  
+  &::before {
+    border-top-color: rgba(59, 130, 246, 0.95) !important;
+  }
+}
+
+.city-popup {
+  min-width: 200px;
+  
+  h3 {
+    margin: 0 0 $spacing-2 0;
+    font-size: $font-lg;
+    color: var(--text-color);
+  }
+  
+  p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: $font-sm;
+  }
+  
+  button {
+    margin-top: $spacing-3;
+    padding: $spacing-2 $spacing-4;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: $radius;
+    cursor: pointer;
+    font-size: $font-sm;
+    font-weight: $font-medium;
+    transition: all $transition-fast;
+    
+    &:hover {
+      background: #2563eb;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+// POI Markers
+.poi-marker {
+  cursor: pointer;
+  transition: all $transition-fast;
+  
+  &:hover {
+    transform: scale(1.1);
+    z-index: 1000 !important;
+  }
+}
+
+.poi-marker-inner {
+  animation: markerPulse 2s ease-in-out infinite;
+}
+
+@keyframes markerPulse {
+  0%, 100% {
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+  }
+  50% {
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3), 0 0 0 8px rgba(102, 126, 234, 0.2);
+  }
+}
+
+.poi-tooltip {
+  background-color: rgba(102, 126, 234, 0.95) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: $radius !important;
+  padding: $spacing-2 $spacing-3 !important;
+  font-size: $font-sm !important;
+  font-weight: $font-medium !important;
+  box-shadow: var(--shadow-lg) !important;
+  
+  &::before {
+    border-top-color: rgba(102, 126, 234, 0.95) !important;
+  }
+}
+
+.poi-popup-container {
+  .leaflet-popup-content-wrapper {
+    padding: 0;
+  }
+  
+  .leaflet-popup-content {
+    margin: 12px;
+  }
+}
+
+.poi-popup {
+  h3 {
+    margin: 0;
+    font-size: $font-lg;
+    font-weight: $font-semibold;
+  }
+  
+  p {
+    margin: 0;
+    line-height: 1.5;
   }
 }
 
