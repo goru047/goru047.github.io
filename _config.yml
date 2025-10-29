@@ -1,10 +1,10 @@
 # Site Settings
-title: "Travel Map Blog"
+title: "Voyegeur Azad"
 description: "Exploring the world, one city at a time"
-author: "Your Name"
-email: "your.email@example.com"
+author: "Labonno Azad"
+email: "sleipnir029@gmail.com"
 baseurl: "" # Leave empty if hosting at username.github.io, or add "/repo-name" if hosting at username.github.io/repo-name
-url: "https://yourusername.github.io"
+url: "https://goru047.github.io"
 
 # Build settings
 markdown: kramdown
