@@ -24,6 +24,7 @@ CITY_COORDINATES = {
     "Berlin": [52.5200, 13.4050],
     "Prague": [50.0755, 14.4378],
     "Vienna": [48.2082, 16.3738],
+    "Aachen": [50.7753, 6.0839],
 }
 
 COUNTRY_DATA = {
