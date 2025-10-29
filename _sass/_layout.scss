@@ -1,0 +1,452 @@
+// ==========================================================================
+// Layout - Container, Grid, Header, Footer, Navigation
+// ==========================================================================
+
+// Container
+// --------------------------------------------------------------------------
+
+.container {
+  width: 100%;
+  max-width: $container-xl;
+  margin: 0 auto;
+  padding: 0 $spacing-4;
+  
+  @media (min-width: $breakpoint-sm) {
+    padding: 0 $spacing-6;
+  }
+  
+  @media (min-width: $breakpoint-lg) {
+    padding: 0 $spacing-8;
+  }
+}
+
+// Main Content
+// --------------------------------------------------------------------------
+
+.main-content {
+  min-height: calc(100vh - #{$header-height} - 200px);
+}
+
+// Header
+// --------------------------------------------------------------------------
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: $z-sticky;
+  background-color: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.95);
+  
+  [data-theme="dark"] & {
+    background-color: rgba(13, 17, 23, 0.95);
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: $header-height;
+    gap: $spacing-4;
+  }
+}
+
+// Site Branding
+.site-branding {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+  color: var(--text-color);
+  font-weight: $font-bold;
+  font-size: $font-lg;
+  text-decoration: none;
+  transition: color $transition-fast;
+  
+  &:hover {
+    color: var(--primary-color);
+  }
+  
+  svg {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+}
+
+.site-title {
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+// Navigation
+// --------------------------------------------------------------------------
+
+.site-nav {
+  display: none;
+  
+  @media (min-width: $breakpoint-md) {
+    display: block;
+  }
+  
+  .nav-list {
+    display: flex;
+    gap: $spacing-2;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-link {
+    display: block;
+    padding: $spacing-2 $spacing-4;
+    color: var(--text-secondary);
+    font-weight: $font-medium;
+    border-radius: $radius;
+    transition: all $transition-fast;
+    
+    &:hover {
+      color: var(--text-color);
+      background-color: var(--bg-secondary);
+    }
+    
+    &.active {
+      color: var(--primary-color);
+      background-color: var(--primary-light);
+    }
+  }
+}
+
+// Mobile Navigation
+// --------------------------------------------------------------------------
+
+.mobile-menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  
+  @media (min-width: $breakpoint-md) {
+    display: none;
+  }
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  
+  .hamburger-line {
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-color);
+    border-radius: 2px;
+    transition: all $transition-fast;
+  }
+}
+
+.mobile-menu-toggle[aria-expanded="true"] {
+  .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translateY(7px);
+  }
+  
+  .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translateY(-7px);
+  }
+}
+
+// Mobile Menu Overlay
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  top: $header-height;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--overlay-color);
+  z-index: $z-modal-backdrop;
+  
+  &.active {
+    display: block;
+  }
+}
+
+// Mobile Menu (when open)
+@media (max-width: ($breakpoint-md - 1px)) {
+  .site-nav {
+    position: fixed;
+    top: $header-height;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--surface-color);
+    padding: $spacing-6 $spacing-4;
+    transform: translateX(-100%);
+    transition: transform $transition-base;
+    z-index: $z-modal;
+    overflow-y: auto;
+    
+    &.active {
+      display: block;
+      transform: translateX(0);
+    }
+    
+    .nav-list {
+      flex-direction: column;
+      gap: $spacing-2;
+    }
+    
+    .nav-link {
+      padding: $spacing-4;
+      font-size: $font-lg;
+    }
+  }
+}
+
+// Theme Toggle
+// --------------------------------------------------------------------------
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: $radius;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: background-color $transition-fast;
+  
+  &:hover {
+    background-color: var(--bg-secondary);
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.theme-icon-light {
+  display: block;
+  
+  [data-theme="dark"] & {
+    display: none;
+  }
+}
+
+.theme-icon-dark {
+  display: none;
+  
+  [data-theme="dark"] & {
+    display: block;
+  }
+}
+
+// Footer
+// --------------------------------------------------------------------------
+
+.site-footer {
+  margin-top: $spacing-20;
+  padding: $spacing-12 0 $spacing-6;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-8;
+  margin-bottom: $spacing-8;
+  
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.footer-section {
+  h3, h4 {
+    font-size: $font-lg;
+    margin-bottom: $spacing-4;
+  }
+  
+  p {
+    color: var(--text-secondary);
+    margin-bottom: $spacing-3;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      margin-bottom: $spacing-2;
+      
+      a {
+        color: var(--text-secondary);
+        transition: color $transition-fast;
+        
+        &:hover {
+          color: var(--primary-color);
+        }
+      }
+    }
+  }
+}
+
+.social-links {
+  display: flex;
+  gap: $spacing-4;
+  
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: $radius-full;
+    background-color: var(--surface-color);
+    color: var(--text-secondary);
+    transition: all $transition-fast;
+    
+    &:hover {
+      background-color: var(--primary-color);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.footer-bottom {
+  padding-top: $spacing-6;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  
+  .copyright {
+    color: var(--text-secondary);
+    font-size: $font-sm;
+    margin: 0;
+    
+    a {
+      color: var(--text-secondary);
+      
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+  }
+}
+
+// Page & Post Containers
+// --------------------------------------------------------------------------
+
+.page-container,
+.post-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: $spacing-12 $spacing-4;
+  
+  @media (min-width: $breakpoint-md) {
+    padding: $spacing-16 $spacing-6;
+  }
+}
+
+.page-header,
+.post-header {
+  margin-bottom: $spacing-8;
+}
+
+.page-title,
+.post-title {
+  margin-bottom: $spacing-3;
+}
+
+.page-subtitle,
+.subtitle {
+  font-size: $font-xl;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+
+// Grid System
+// --------------------------------------------------------------------------
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-6;
+  
+  @media (min-width: $breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Sections
+// --------------------------------------------------------------------------
+
+.section-header {
+  text-align: center;
+  margin-bottom: $spacing-12;
+  
+  h2 {
+    margin-bottom: $spacing-3;
+  }
+  
+  .subtitle {
+    font-size: $font-lg;
+  }
+}
+
+// Empty State
+// --------------------------------------------------------------------------
+
+.empty-state {
+  text-align: center;
+  padding: $spacing-20 $spacing-4;
+  
+  svg {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto $spacing-6;
+    color: var(--text-tertiary);
+  }
+  
+  h3 {
+    font-size: $font-xl;
+    margin-bottom: $spacing-3;
+  }
+  
+  p {
+    color: var(--text-secondary);
+    margin-bottom: 0;
+  }
+}

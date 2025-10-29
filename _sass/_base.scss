@@ -1,0 +1,340 @@
+// ==========================================================================
+// Base Styles - Reset, Typography, Basic Elements
+// ==========================================================================
+
+// Box Sizing Reset
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// Root & Body
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $font-primary;
+  font-size: $font-base;
+  line-height: $leading-normal;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  transition: background-color $transition-base, color $transition-base;
+  
+  &.menu-open {
+    overflow: hidden;
+  }
+}
+
+// Typography
+// --------------------------------------------------------------------------
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $font-bold;
+  line-height: $leading-tight;
+  color: var(--text-color);
+  margin-bottom: $spacing-4;
+}
+
+h1 {
+  font-size: $font-4xl;
+  margin-bottom: $spacing-6;
+  
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-3xl;
+  }
+}
+
+h2 {
+  font-size: $font-3xl;
+  margin-bottom: $spacing-5;
+  
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-2xl;
+  }
+}
+
+h3 {
+  font-size: $font-2xl;
+  margin-bottom: $spacing-4;
+  
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-xl;
+  }
+}
+
+h4 {
+  font-size: $font-xl;
+  margin-bottom: $spacing-3;
+}
+
+h5 {
+  font-size: $font-lg;
+  margin-bottom: $spacing-3;
+}
+
+h6 {
+  font-size: $font-base;
+  margin-bottom: $spacing-2;
+}
+
+p {
+  margin-bottom: $spacing-4;
+  line-height: $leading-relaxed;
+  color: var(--text-color);
+}
+
+// Links
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color $transition-fast;
+  
+  &:hover {
+    color: var(--primary-hover);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+}
+
+// Strong & Em
+strong, b {
+  font-weight: $font-bold;
+}
+
+em, i {
+  font-style: italic;
+}
+
+// Lists
+ul, ol {
+  margin-bottom: $spacing-4;
+  padding-left: $spacing-6;
+  
+  li {
+    margin-bottom: $spacing-2;
+    line-height: $leading-relaxed;
+  }
+}
+
+// Blockquote
+blockquote {
+  margin: $spacing-6 0;
+  padding: $spacing-4 $spacing-6;
+  border-left: 4px solid var(--primary-color);
+  background-color: var(--bg-secondary);
+  border-radius: $radius;
+  
+  p {
+    margin-bottom: $spacing-2;
+    font-style: italic;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Code
+code {
+  font-family: $font-mono;
+  font-size: 0.9em;
+  padding: $spacing-1 $spacing-2;
+  background-color: var(--bg-secondary);
+  border-radius: $radius-sm;
+  color: var(--text-color);
+}
+
+pre {
+  margin: $spacing-6 0;
+  padding: $spacing-4;
+  background-color: var(--bg-secondary);
+  border-radius: $radius;
+  overflow-x: auto;
+  
+  code {
+    padding: 0;
+    background-color: transparent;
+    font-size: $font-sm;
+  }
+}
+
+// Horizontal Rule
+hr {
+  margin: $spacing-8 0;
+  border: 0;
+  border-top: 1px solid var(--border-color);
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Tables
+table {
+  width: 100%;
+  margin: $spacing-6 0;
+  border-collapse: collapse;
+  
+  th, td {
+    padding: $spacing-3 $spacing-4;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  th {
+    font-weight: $font-semibold;
+    background-color: var(--bg-secondary);
+  }
+  
+  tbody tr:hover {
+    background-color: var(--bg-secondary);
+  }
+}
+
+// Form Elements
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+  width: 100%;
+  padding: $spacing-3 $spacing-4;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: $radius;
+  color: var(--text-color);
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+  
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  }
+  
+  &::placeholder {
+    color: var(--text-tertiary);
+  }
+}
+
+// Buttons
+button,
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-2;
+  padding: $spacing-3 $spacing-6;
+  font-weight: $font-medium;
+  border: none;
+  border-radius: $radius;
+  cursor: pointer;
+  transition: all $transition-fast;
+  text-decoration: none;
+  
+  &:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  
+  &:hover:not(:disabled) {
+    background-color: var(--primary-hover);
+    color: white;
+  }
+}
+
+.btn-secondary {
+  background-color: var(--bg-secondary);
+  color: var(--text-color);
+  
+  &:hover:not(:disabled) {
+    background-color: var(--border-color);
+    color: var(--text-color);
+  }
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  
+  &:hover:not(:disabled) {
+    background-color: var(--primary-color);
+    color: white;
+  }
+}
+
+// Utilities
+// --------------------------------------------------------------------------
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-muted {
+  color: var(--text-secondary);
+}
+
+.text-small {
+  font-size: $font-sm;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Selection
+::selection {
+  background-color: var(--primary-color);
+  color: white;
+}

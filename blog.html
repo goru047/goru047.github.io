@@ -1,0 +1,28 @@
+---
+layout: page
+title: Blog
+subtitle: All my travel stories
+permalink: /blog/
+---
+
+<div class="blog-list">
+  
+  <!-- Posts Grid -->
+  <div class="cards-grid">
+    {% for post in site.posts %}
+      {% include post-card.html post=post %}
+    {% endfor %}
+  </div>
+  
+  <!-- Empty State -->
+  {% if site.posts.size == 0 %}
+  <div class="empty-state">
+    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+    </svg>
+    <h3>No posts yet</h3>
+    <p>Check back soon for new travel stories!</p>
+  </div>
+  {% endif %}
+  
+</div>

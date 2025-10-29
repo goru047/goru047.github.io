@@ -1,0 +1,23 @@
+{
+  "map": {
+    "center": [
+      20,
+      0
+    ],
+    "initialZoom": 2,
+    "minZoom": 2,
+    "maxZoom": 18
+  },
+  "colors": {
+    "visited": "#10b981",
+    "unvisited": "#e5e7eb",
+    "hover": "#34d399",
+    "active": "#059669"
+  },
+  "stats": {
+    "countries": 4,
+    "cities": 4,
+    "pois": 13,
+    "posts": 5
+  }
+}

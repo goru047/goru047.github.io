@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="{{ site.theme_config.default_theme }}">
+<head>
+  {% include head.html %}
+</head>
+<body>
+  {% include header.html %}
+  
+  <main class="main-content">
+    {{ content }}
+  </main>
+  
+  {% include footer.html %}
+  
+  <!-- Theme toggle script -->
+  <script>
+    // Initialize theme from localStorage or default
+    const savedTheme = localStorage.getItem('theme') || '{{ site.theme_config.default_theme }}';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
+</body>
+</html>

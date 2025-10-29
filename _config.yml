@@ -1,0 +1,77 @@
+# Site Settings
+title: "Travel Map Blog"
+description: "Exploring the world, one city at a time"
+author: "Your Name"
+email: "your.email@example.com"
+baseurl: "" # Leave empty if hosting at username.github.io, or add "/repo-name" if hosting at username.github.io/repo-name
+url: "https://yourusername.github.io"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /blog/:year/:month/:day/:title/
+
+# Sass/SCSS
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Kramdown settings
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: false
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - scripts/
+  - README.md
+  - .github/
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Reading time (words per minute)
+words_per_minute: 200
+
+# Social links (optional)
+social:
+  github: "yourusername"
+  twitter: "yourusername"
+  instagram: "yourusername"
+
+# Theme-specific settings
+theme_config:
+  default_theme: "dark" # "light" or "dark"
+  map:
+    initial_zoom: 2
+    min_zoom: 2
+    max_zoom: 18
+    center: [20, 0] # [latitude, longitude]
+  colors:
+    visited: "#10b981"
+    unvisited: "#6b7280"
