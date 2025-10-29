@@ -339,17 +339,17 @@
           zoomToCity(cityName, city);
         });
         
-        // Add popup with city info
-        marker.bindPopup(`
-          <div class="city-popup">
-            <h3>${cityName}</h3>
-            <p>${country.cities.length > 1 ? countryName : ''}</p>
-            <button onclick="window.dispatchEvent(new CustomEvent('cityClick', {detail: '${cityName}'}))" 
-                    style="padding: 8px 16px; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer; margin-top: 8px;">
-              Explore City
-            </button>
-          </div>
-        `);
+        // // Add popup with city info
+        // marker.bindPopup(`
+        //   <div class="city-popup">
+        //     <h3>${cityName}</h3>
+        //     <p>${country.cities.length > 1 ? countryName : ''}</p>
+        //     <button onclick="window.dispatchEvent(new CustomEvent('cityClick', {detail: '${cityName}'}))" 
+        //             style="padding: 8px 16px; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer; margin-top: 8px;">
+        //       Explore City
+        //     </button>
+        //   </div>
+        // `);
       }
       
       config.layers.cities.addLayer(marker);
