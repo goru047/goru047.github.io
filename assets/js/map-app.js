@@ -99,12 +99,12 @@
     //   maxZoom: 19
     // }).addTo(config.map);
     
-    // // 6/10 Add tile layer - Stamen Terrain (Natural landscape) - looks good for my case when tiles are not being loaded (issue)
-    // L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.png', {
-    //   attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> — Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    //   subdomains: 'abcd',
-    //   maxZoom: 18
-    // }).addTo(config.map);
+    // 6/10 Add tile layer - Stamen Terrain (Natural landscape) - looks good for my case when tiles are not being loaded (issue)
+    L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.png', {
+      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> — Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      subdomains: 'abcd',
+      maxZoom: 18
+    }).addTo(config.map);
 
     // // Add tile layer - Stamen Toner Lite (Ink style)
     // L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png', {
@@ -119,11 +119,11 @@
     //   maxZoom: 18
     // }).addTo(config.map);
 
-    // Add tile layer - Stamen Watercolor (Artistic style)
-    L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.{ext}', {
-      attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', ext: 'jpg',
-      maxZoom: 16
-    }).addTo(config.map);
+    // // Add tile layer - Stamen Watercolor (Artistic style) - need api access
+    // L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.{ext}', {
+    //   attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', ext: 'jpg',
+    //   maxZoom: 16
+    // }).addTo(config.map);
 
     // Load map data
     loadMapData();
