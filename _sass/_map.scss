@@ -1,21 +1,21 @@
 // ==========================================================================
-// IMPROVED Map Styles - Minimal, Beautiful, Intuitive
+// FINAL Map Styles - Grounded, Beautiful, High Contrast
 // ==========================================================================
 
-// Map Section - Reduced height, better visual hierarchy
+// Map Section - Clean and grounded
 // --------------------------------------------------------------------------
 
 .map-section {
   position: relative;
   width: 100%;
-  background: linear-gradient(180deg, var(--bg-color) 0%, var(--bg-secondary) 100%);
-  padding-bottom: $spacing-8;
+  background: var(--bg-color);
+  padding: $spacing-8 0;
 }
 
-// Map Header - Clear instruction for first-time visitors
+// Map Header
 .map-header {
   text-align: center;
-  padding: $spacing-8 $spacing-4 $spacing-4;
+  padding: 0 $spacing-4 $spacing-6;
   max-width: 800px;
   margin: 0 auto;
   
@@ -34,7 +34,7 @@
     font-size: $font-base;
     color: var(--text-secondary);
     margin: 0;
-    line-height: 1.6;
+    line-height: $leading-normal;
   }
   
   .map-instruction {
@@ -57,86 +57,45 @@
   }
 }
 
-// Map Wrapper - Reduced height, elegant container
+// Map Wrapper - Grounded design, subtle separation
 #map-wrapper {
   position: relative;
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  height: 350px; // Reduced from 400px
-  border-radius: $radius-2xl;
-  overflow: hidden;
-  box-shadow: 
-    0 10px 40px rgba(0, 0, 0, 0.1),
-    0 2px 8px rgba(0, 0, 0, 0.06);
+  height: $map-height-mobile;
+  
+  // Subtle top border instead of heavy shadow
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   
   @media (min-width: $breakpoint-md) {
-    height: 450px; // Reduced from 500px
+    height: $map-height-tablet;
+    border-radius: $radius-lg;
+    border: 1px solid var(--border-color);
     margin: 0 $spacing-6;
   }
   
   @media (min-width: $breakpoint-lg) {
-    height: 500px; // Reduced from 600px
+    height: $map-height-desktop;
     margin: 0 auto;
-  }
-  
-  // Elegant border on light theme
-  @media (prefers-color-scheme: light) {
-    border: 1px solid rgba(0, 0, 0, 0.08);
-  }
-  
-  // Subtle glow on dark theme
-  @media (prefers-color-scheme: dark) {
-    box-shadow: 
-      0 10px 40px rgba(0, 0, 0, 0.3),
-      0 0 0 1px rgba(255, 255, 255, 0.05);
   }
 }
 
-// Map Container - Enhanced styling
+// Map Container - Focus on beautiful map colors
 #map {
   width: 100%;
   height: 100%;
   position: relative;
   z-index: 1;
-  background: var(--bg-secondary);
-  
-  // Smooth tiles
-  .leaflet-tile-container {
-    filter: contrast(1.05) brightness(1.02);
-  }
-  
-  // Better tile transitions
-  .leaflet-tile {
-    transition: opacity 0.2s ease;
-  }
-}
-
-// Map Overlay - Gentle vignette effect
-#map::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 2;
-  background: radial-gradient(
-    circle at center,
-    transparent 0%,
-    transparent 70%,
-    rgba(0, 0, 0, 0.05) 100%
-  );
+  background: #e8f4f8; // Subtle ocean blue
   
   @media (prefers-color-scheme: dark) {
-    background: radial-gradient(
-      circle at center,
-      transparent 0%,
-      transparent 70%,
-      rgba(0, 0, 0, 0.2) 100%
-    );
+    background: #1a2332; // Dark ocean
   }
 }
 
-// Breadcrumb Navigation - Glassmorphism style
+// Breadcrumb - HIGH CONTRAST for both themes
 // --------------------------------------------------------------------------
 
 .breadcrumb {
@@ -148,24 +107,21 @@
   align-items: center;
   gap: $spacing-2;
   
-  // Glassmorphism effect
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  // Light mode - white with strong shadow
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   
   padding: $spacing-2 $spacing-3;
   border-radius: $radius-full;
-  box-shadow: 
-    0 4px 12px rgba(0, 0, 0, 0.08),
-    0 0 0 1px rgba(0, 0, 0, 0.05);
   max-width: calc(100% - #{$spacing-8});
   overflow-x: auto;
   
+  // Dark mode - dark with strong contrast
   @media (prefers-color-scheme: dark) {
-    background: rgba(30, 30, 30, 0.85);
-    box-shadow: 
-      0 4px 12px rgba(0, 0, 0, 0.3),
-      0 0 0 1px rgba(255, 255, 255, 0.1);
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   }
   
   @media (min-width: $breakpoint-md) {
@@ -192,16 +148,12 @@
   font-weight: $font-medium;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all $transition-fast;
   white-space: nowrap;
   
   &:hover:not(.active) {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--bg-secondary);
     color: var(--text-color);
-    
-    @media (prefers-color-scheme: dark) {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
   }
   
   &.active {
@@ -224,7 +176,7 @@
   font-size: 12px;
 }
 
-// Reset View Button - Floating action
+// Reset View Button - HIGH CONTRAST
 // --------------------------------------------------------------------------
 
 #reset-view {
@@ -234,43 +186,36 @@
   z-index: $z-dropdown;
   
   padding: $spacing-3 $spacing-4;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   
-  border: none;
+  // Light mode - white with strong shadow
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  
   border-radius: $radius-full;
-  box-shadow: 
-    0 4px 12px rgba(0, 0, 0, 0.08),
-    0 0 0 1px rgba(0, 0, 0, 0.05);
-  
   font-size: $font-sm;
   font-weight: $font-medium;
   color: var(--text-color);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all $transition-fast;
   
   display: flex;
   align-items: center;
   gap: $spacing-2;
   
+  // Dark mode - dark with strong contrast
   @media (prefers-color-scheme: dark) {
-    background: rgba(30, 30, 30, 0.95);
-    box-shadow: 
-      0 4px 12px rgba(0, 0, 0, 0.3),
-      0 0 0 1px rgba(255, 255, 255, 0.1);
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   }
   
   &:hover {
     transform: translateY(-1px);
-    box-shadow: 
-      0 6px 16px rgba(0, 0, 0, 0.12),
-      0 0 0 1px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     
     @media (prefers-color-scheme: dark) {
-      box-shadow: 
-        0 6px 16px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
     }
   }
   
@@ -289,62 +234,79 @@
   }
 }
 
-// Country/City Styles - Better colors for both themes
+// Beautiful Country/City Colors - THE MAIN FOCUS
 // --------------------------------------------------------------------------
 
-// Visited countries - vibrant but not overwhelming
+// Visited countries - Vibrant, clear boundaries
 .leaflet-interactive[data-visited="true"] {
+  // Light mode - bright emerald
   fill: #10b981 !important;
-  fill-opacity: 0.25 !important;
+  fill-opacity: 0.3 !important;
   stroke: #059669 !important;
-  stroke-width: 1.5 !important;
+  stroke-width: 2 !important;
+  stroke-opacity: 1 !important;
   
+  // Dark mode - brighter, more visible
   @media (prefers-color-scheme: dark) {
     fill: #34d399 !important;
-    fill-opacity: 0.35 !important;
+    fill-opacity: 0.4 !important;
     stroke: #10b981 !important;
+    stroke-width: 2 !important;
   }
   
+  // Beautiful hover effect
   &:hover {
-    fill-opacity: 0.45 !important;
-    stroke-width: 2 !important;
+    fill: #059669 !important;
+    fill-opacity: 0.5 !important;
+    stroke: #047857 !important;
+    stroke-width: 2.5 !important;
+    cursor: pointer;
     
     @media (prefers-color-scheme: dark) {
-      fill-opacity: 0.55 !important;
+      fill: #10b981 !important;
+      fill-opacity: 0.6 !important;
+      stroke: #34d399 !important;
     }
   }
 }
 
-// Unvisited countries - subtle
+// Unvisited countries - Subtle but visible borders
 .leaflet-interactive[data-visited="false"] {
-  fill: #e5e7eb !important;
-  fill-opacity: 0.15 !important;
+  // Light mode
+  fill: #f3f4f6 !important;
+  fill-opacity: 0.3 !important;
   stroke: #d1d5db !important;
-  stroke-width: 0.5 !important;
+  stroke-width: 0.8 !important;
+  stroke-opacity: 0.6 !important;
   
+  // Dark mode
   @media (prefers-color-scheme: dark) {
     fill: #374151 !important;
-    fill-opacity: 0.2 !important;
+    fill-opacity: 0.3 !important;
     stroke: #4b5563 !important;
+    stroke-width: 0.8 !important;
+    stroke-opacity: 0.8 !important;
+  }
+  
+  &:hover {
+    fill-opacity: 0.2 !important;
   }
 }
 
-// Custom Leaflet Popup - Beautiful design
+// Custom Leaflet Popup - Clean design
 // --------------------------------------------------------------------------
 
 .leaflet-popup-content-wrapper {
-  border-radius: $radius-xl;
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(0, 0, 0, 0.05);
+  border-radius: $radius-lg;
+  background: white;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   padding: 0;
-  overflow: hidden;
   
   @media (prefers-color-scheme: dark) {
     background: #1e293b;
-    box-shadow: 
-      0 20px 40px rgba(0, 0, 0, 0.5),
-      0 0 0 1px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   }
 }
 
@@ -364,7 +326,7 @@
     font-size: $font-sm;
     color: var(--text-secondary);
     margin-bottom: $spacing-2;
-    line-height: 1.5;
+    line-height: $leading-normal;
   }
 }
 
@@ -386,58 +348,76 @@
   }
 }
 
-// Zoom Controls - Match overall design
+// Zoom Controls - HIGH CONTRAST, clearly visible
 // --------------------------------------------------------------------------
 
 .leaflet-control-zoom {
   border: none !important;
-  box-shadow: 
-    0 4px 12px rgba(0, 0, 0, 0.08),
-    0 0 0 1px rgba(0, 0, 0, 0.05) !important;
   border-radius: $radius-lg !important;
   overflow: hidden;
   
+  // Light mode
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  
+  // Dark mode
   @media (prefers-color-scheme: dark) {
-    box-shadow: 
-      0 4px 12px rgba(0, 0, 0, 0.3),
-      0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
   }
   
   a {
-    background: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    color: var(--text-color) !important;
+    // Light mode - white background, dark text
+    background: #ffffff !important;
+    color: #1f2937 !important;
     border: none !important;
+    width: 34px !important;
+    height: 34px !important;
+    line-height: 34px !important;
+    font-size: 20px !important;
+    font-weight: $font-bold !important;
     
+    // Dark mode - dark background, light text
     @media (prefers-color-scheme: dark) {
-      background: rgba(30, 30, 30, 0.95) !important;
+      background: #1e293b !important;
+      color: #e5e7eb !important;
     }
     
     &:hover {
-      background: rgba(255, 255, 255, 1) !important;
+      background: #f3f4f6 !important;
+      color: #000000 !important;
       
       @media (prefers-color-scheme: dark) {
-        background: rgba(50, 50, 50, 1) !important;
+        background: #334155 !important;
+        color: #ffffff !important;
+      }
+    }
+    
+    &:first-child {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+      
+      @media (prefers-color-scheme: dark) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
       }
     }
   }
 }
 
-// Attribution - Subtle but visible
+// Attribution - Subtle
 // --------------------------------------------------------------------------
 
 .leaflet-control-attribution {
-  background: rgba(255, 255, 255, 0.7) !important;
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.9) !important;
   font-size: 10px !important;
   padding: 2px 6px !important;
   border-radius: $radius !important;
   margin: 4px !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
   
   @media (prefers-color-scheme: dark) {
-    background: rgba(30, 30, 30, 0.7) !important;
-    color: rgba(255, 255, 255, 0.6) !important;
+    background: rgba(30, 41, 59, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
   }
   
   a {
@@ -475,12 +455,12 @@
   to { transform: rotate(360deg); }
 }
 
-// Responsive adjustments
+// Responsive
 // --------------------------------------------------------------------------
 
 @media (max-width: $breakpoint-md) {
   .map-header {
-    padding: $spacing-6 $spacing-4 $spacing-3;
+    padding: 0 $spacing-4 $spacing-4;
     
     h2 {
       font-size: $font-xl;
@@ -497,7 +477,9 @@
   }
   
   #map-wrapper {
-    border-radius: 0; // Full width on mobile
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
     margin: 0;
   }
 }
