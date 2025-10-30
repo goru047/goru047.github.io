@@ -77,7 +77,7 @@
       zoomControl: true
     });
 
-    
+    // link to tile layer options - https://leaflet-extras.github.io/leaflet-providers/preview/
     
     // // Add tile layer - fixed to use OpenStreetMap tiles
     // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
