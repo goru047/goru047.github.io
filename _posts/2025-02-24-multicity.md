@@ -26,6 +26,7 @@ What started as a dream turned into the adventure of a lifetime. Three countries
 Paris greeted us with open arms and perfect spring weather. We spent three days exploring the iconic landmarks, hidden cafés, and charming neighborhoods.
 
 **Highlights:**
+
 - Morning croissants at a local boulangerie
 - Sunset from the Eiffel Tower
 - Getting lost in the Louvre's endless galleries
@@ -36,6 +37,7 @@ Paris greeted us with open arms and perfect spring weather. We spent three days 
 From Paris, we took a morning flight to Rome. The transition from French elegance to Italian passion was immediate and exhilarating.
 
 **Highlights:**
+
 - Standing inside the Colosseum at sunrise
 - Tossing coins into the Trevi Fountain
 - The best carbonara of my life in Trastevere
@@ -46,6 +48,7 @@ From Paris, we took a morning flight to Rome. The transition from French eleganc
 Our final stop was Barcelona, and what a perfect ending it was. Gaudí's architecture, Mediterranean beaches, and tapas galore.
 
 **Highlights:**
+
 - Sagrada Familia left us speechless
 - Park Güell's colorful mosaics
 - Fresh seafood at La Boqueria market
@@ -54,16 +57,19 @@ Our final stop was Barcelona, and what a perfect ending it was. Gaudí's archite
 ## Travel Tips
 
 **Getting Around:**
+
 - Paris to Rome: Flight (2 hours) - €80
 - Rome to Barcelona: Train (overnight) - €120
 - Within cities: Metro passes are your best friend
 
 **Budget:**
+
 - Accommodation: €60-100/night (mix of hostels and mid-range hotels)
 - Food: €30-50/day per person
 - Attractions: €15-30 per major site
 
 **Best Time to Visit:**
+
 - Spring (April-May) or Fall (September-October)
 - Avoid August in Rome - it's scorching!
 
