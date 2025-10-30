@@ -1,0 +1,653 @@
+// ==========================================================================
+// ULTIMATE MAP STYLES - Best of Both Worlds
+// Perfect page layout + Terrain-optimized colors
+// ==========================================================================
+
+// Map Section - Clean and grounded (from original - BEST)
+// --------------------------------------------------------------------------
+
+.map-section {
+  position: relative;
+  width: 100%;
+  background: var(--bg-color);
+  padding: $spacing-8 0;
+}
+
+// Map Header - Centered, well-spaced (from original - BEST)
+.map-header {
+  text-align: center;
+  padding: 0 $spacing-4 $spacing-6;
+  max-width: 800px;
+  margin: 0 auto;
+  
+  h2 {
+    font-size: $font-2xl;
+    font-weight: $font-bold;
+    color: var(--text-color);
+    margin-bottom: $spacing-3;
+    
+    @media (min-width: $breakpoint-md) {
+      font-size: $font-3xl;
+    }
+  }
+  
+  p {
+    font-size: $font-base;
+    color: var(--text-secondary);
+    margin: 0 auto;  // CENTER FIX
+    max-width: 600px;  // CENTER FIX
+    line-height: $leading-normal;
+    text-align: center;  // CENTER FIX
+  }
+  
+  .map-instruction {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    margin-top: $spacing-3;
+    padding: $spacing-2 $spacing-4;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: $radius-full;
+    font-size: $font-sm;
+    font-weight: $font-medium;
+    box-shadow: var(--shadow-md);
+    
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+// Map Wrapper - Grounded design with variables (from original - BEST)
+#map-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: $map-height-mobile;
+  
+  // Subtle borders
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  
+  @media (min-width: $breakpoint-md) {
+    height: $map-height-tablet;
+    border-radius: $radius-lg;
+    border: 1px solid var(--border-color);
+    margin: 0 $spacing-6;
+  }
+  
+  @media (min-width: $breakpoint-lg) {
+    height: $map-height-desktop;
+    margin: 0 auto;
+  }
+}
+
+// Map Container - Terrain ocean gradient (from terrain - BEST)
+#map {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  
+  // Natural ocean color that complements terrain
+  background: linear-gradient(
+    180deg,
+    #d4e9f0 0%,
+    #b8d8e8 50%,
+    #9ec7db 100%
+  );
+  
+  @media (prefers-color-scheme: dark) {
+    background: linear-gradient(
+      180deg,
+      #2a3f4d 0%,
+      #1e3340 50%,
+      #142830 100%
+    );
+  }
+}
+
+// Country Styles - Terrain-optimized forest green (from terrain - BEST)
+// --------------------------------------------------------------------------
+
+.leaflet-interactive[data-visited="true"] {
+  // Light mode - warm forest green
+  fill: #2d7a4f !important;
+  fill-opacity: 0.35 !important;
+  stroke: #1e5a3a !important;
+  stroke-width: 2 !important;
+  stroke-opacity: 1 !important;
+  
+  // Dark mode - brighter but still natural
+  @media (prefers-color-scheme: dark) {
+    fill: #3d9b6d !important;
+    fill-opacity: 0.45 !important;
+    stroke: #2d7a4f !important;
+    stroke-width: 2 !important;
+  }
+  
+  // Beautiful hover effect
+  &:hover {
+    fill: #1e5a3a !important;
+    fill-opacity: 0.55 !important;
+    stroke: #0f3d26 !important;
+    stroke-width: 2.5 !important;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    @media (prefers-color-scheme: dark) {
+      fill: #2d7a4f !important;
+      fill-opacity: 0.65 !important;
+      stroke: #3d9b6d !important;
+    }
+  }
+}
+
+.leaflet-interactive[data-visited="false"] {
+  // Very subtle - let terrain show
+  fill: #e8ebe9 !important;
+  fill-opacity: 0.15 !important;
+  stroke: #c5cac7 !important;
+  stroke-width: 0.8 !important;
+  stroke-opacity: 0.5 !important;
+  
+  @media (prefers-color-scheme: dark) {
+    fill: #3a4a44 !important;
+    fill-opacity: 0.2 !important;
+    stroke: #4d5d57 !important;
+    stroke-width: 0.8 !important;
+    stroke-opacity: 0.6 !important;
+  }
+  
+  &:hover {
+    fill-opacity: 0.1 !important;
+  }
+}
+
+// // Breadcrumb - Natural theme with better variables (MERGED - BEST)
+// // --------------------------------------------------------------------------
+
+// .breadcrumb {
+//   position: absolute;
+//   top: $spacing-4;
+//   left: $spacing-4;
+//   z-index: $z-dropdown;
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-2;
+  
+//   // Warm natural background (from terrain)
+//   background: rgba(255, 252, 245, 0.95);
+//   border: 1px solid rgba(45, 122, 79, 0.2);
+//   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  
+//   padding: $spacing-2 $spacing-3;
+//   border-radius: $radius-full;
+//   max-width: calc(100% - #{$spacing-8});
+//   overflow-x: auto;
+  
+//   @media (prefers-color-scheme: dark) {
+//     background: rgba(30, 41, 59, 0.95);
+//     border: 1px solid rgba(61, 155, 109, 0.3);
+//     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+//   }
+  
+//   @media (min-width: $breakpoint-md) {
+//     top: $spacing-6;
+//     left: $spacing-6;
+//   }
+  
+//   // Hide scrollbar
+//   &::-webkit-scrollbar {
+//     display: none;
+//   }
+//   scrollbar-width: none;
+// }
+
+// .breadcrumb-item {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-2;
+//   padding: $spacing-2 $spacing-3;
+//   background: none;
+//   border: none;
+//   border-radius: $radius-full;
+//   font-size: $font-sm;
+//   font-weight: $font-medium;
+//   color: #5a6a5d;  // Natural color (from terrain)
+//   cursor: pointer;
+//   transition: all $transition-fast;
+//   white-space: nowrap;
+  
+//   &:hover:not(.active) {
+//     background-color: rgba(45, 122, 79, 0.1);  // Forest green tint
+//     color: #2d7a4f;
+//   }
+  
+//   &.active {
+//     background-color: #2d7a4f;  // Forest green (from terrain)
+//     color: white;
+//     pointer-events: none;
+//   }
+  
+//   svg {
+//     width: 14px;
+//     height: 14px;
+//     opacity: 0.7;
+//   }
+// }
+
+// .breadcrumb-separator {
+//   color: var(--text-secondary);
+//   opacity: 0.5;
+//   user-select: none;
+//   font-size: 12px;
+// }
+
+
+// Breadcrumb - Natural theme with Arrow Separators
+// --------------------------------------------------------------------------
+
+.breadcrumb {
+  position: absolute;
+  top: $spacing-4;
+  left: $spacing-4;
+  z-index: $z-dropdown;
+  display: flex;
+  align-items: center;
+  gap: 0;  // CHANGED: No gap, arrows create spacing
+  
+  // Warm natural background
+  background: rgba(255, 252, 245, 0.95);
+  border: 1px solid rgba(45, 122, 79, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  
+  padding: $spacing-2 $spacing-3;
+  border-radius: $radius-full;
+  max-width: calc(100% - #{$spacing-8});
+  overflow-x: auto;
+  
+  @media (prefers-color-scheme: dark) {
+    background: rgba(30, 41, 59, 0.95);
+    border: 1px solid rgba(61, 155, 109, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+  
+  @media (min-width: $breakpoint-md) {
+    top: $spacing-6;
+    left: $spacing-6;
+  }
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+  padding: $spacing-2 $spacing-3;
+  background: none;
+  border: none;
+  border-radius: $radius-full;
+  font-size: $font-sm;
+  font-weight: $font-medium;
+  color: #5a6a5d;
+  cursor: pointer;
+  transition: all $transition-fast;
+  white-space: nowrap;
+  
+  &:hover:not(.active) {
+    background-color: rgba(45, 122, 79, 0.1);
+    color: #2d7a4f;
+  }
+  
+  &.active {
+    background-color: #2d7a4f;
+    color: white;
+    pointer-events: none;
+  }
+  
+  svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+  }
+}
+
+.breadcrumb-separator {
+  // Chevron arrow separator (›)
+  color: #9ca3af;
+  opacity: 0.4;
+  user-select: none;
+  font-size: 16px;
+  margin: 0 4px;
+  
+  @media (prefers-color-scheme: dark) {
+    color: #6b7280;
+    opacity: 0.5;
+  }
+  
+  // If using SVG chevron
+  svg {
+    width: 14px;
+    height: 14px;
+    color: #9ca3af;
+    opacity: 0.4;
+  }
+}
+
+// Reset View Button - Natural theme (MERGED - BEST)
+// --------------------------------------------------------------------------
+
+#reset-view {
+  position: absolute;
+  top: $spacing-4;
+  right: $spacing-4;
+  z-index: $z-dropdown;
+  
+  padding: $spacing-3 $spacing-4;
+  
+  // Warm natural background (from terrain)
+  background: rgba(255, 252, 245, 0.95);
+  border: 1px solid rgba(45, 122, 79, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  
+  border-radius: $radius-full;
+  font-size: $font-sm;
+  font-weight: $font-medium;
+  color: #2d7a4f;  // Forest green (from terrain)
+  cursor: pointer;
+  transition: all $transition-fast;
+  
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+  
+  @media (prefers-color-scheme: dark) {
+    background: rgba(30, 41, 59, 0.95);
+    border: 1px solid rgba(61, 155, 109, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    color: #3d9b6d;
+  }
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(45, 122, 79, 0.2);
+    background: #2d7a4f;  // Forest green hover
+    color: white;
+    
+    @media (prefers-color-scheme: dark) {
+      box-shadow: 0 4px 12px rgba(61, 155, 109, 0.3);
+      background: #3d9b6d;
+    }
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  @media (min-width: $breakpoint-md) {
+    top: $spacing-6;
+    right: $spacing-6;
+  }
+}
+
+// Popup - Forest green design (from terrain - BEST)
+// --------------------------------------------------------------------------
+
+.leaflet-popup-content-wrapper {
+  border-radius: $radius-lg;
+  background: #ffffff;
+  border: 2px solid #2d7a4f;  // Forest green border
+  box-shadow: 0 8px 24px rgba(45, 122, 79, 0.15);
+  padding: 0;
+  overflow: hidden;
+  
+  @media (prefers-color-scheme: dark) {
+    background: #1e293b;
+    border: 2px solid #3d9b6d;
+    box-shadow: 0 8px 24px rgba(61, 155, 109, 0.2);
+  }
+}
+
+.leaflet-popup-content {
+  margin: 0;
+  font-family: $font-primary;
+  min-width: 250px;
+  
+  h3 {
+    // Forest green header (replaces purple)
+    background: linear-gradient(135deg, #2d7a4f 0%, #1e5a3a 100%);
+    color: #ffffff;
+    font-size: $font-lg;
+    font-weight: $font-semibold;
+    margin: 0;
+    padding: $spacing-4 $spacing-5;
+    line-height: $leading-snug;
+  }
+  
+  p {
+    font-size: $font-sm;
+    color: var(--text-secondary);
+    margin: 0;
+    padding: $spacing-4 $spacing-5;
+    line-height: $leading-normal;
+    
+    &:not(:last-child) {
+      padding-bottom: $spacing-2;
+    }
+  }
+}
+
+.leaflet-popup-tip {
+  background: #ffffff;
+  border: 2px solid #2d7a4f;
+  border-top: none;
+  border-right: none;
+  
+  @media (prefers-color-scheme: dark) {
+    background: #1e293b;
+    border-color: #3d9b6d;
+  }
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 24px;
+  padding: 8px 12px;
+  font-weight: $font-semibold;
+  
+  &:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+// Zoom Controls - Natural theme (MERGED - BEST)
+// --------------------------------------------------------------------------
+
+.leaflet-control-zoom {
+  border: none !important;
+  border-radius: $radius-lg !important;
+  overflow: hidden;
+  
+  // Natural borders (from terrain)
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12) !important;
+  border: 1px solid rgba(45, 122, 79, 0.15) !important;
+  
+  @media (prefers-color-scheme: dark) {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid rgba(61, 155, 109, 0.2) !important;
+  }
+  
+  a {
+    // Warm cream background (from terrain)
+    background: rgba(255, 252, 245, 0.95) !important;
+    color: #2d7a4f !important;  // Forest green text
+    border: none !important;
+    width: 34px !important;
+    height: 34px !important;
+    line-height: 34px !important;
+    font-size: 20px !important;
+    font-weight: $font-bold !important;
+    
+    @media (prefers-color-scheme: dark) {
+      background: rgba(30, 41, 59, 0.95) !important;
+      color: #3d9b6d !important;
+    }
+    
+    &:hover {
+      background: #2d7a4f !important;  // Forest green hover
+      color: white !important;
+      
+      @media (prefers-color-scheme: dark) {
+        background: #3d9b6d !important;
+        color: white !important;
+      }
+    }
+    
+    &:first-child {
+      border-bottom: 1px solid rgba(45, 122, 79, 0.15) !important;
+      
+      @media (prefers-color-scheme: dark) {
+        border-bottom: 1px solid rgba(61, 155, 109, 0.2) !important;
+      }
+    }
+  }
+}
+
+// Attribution - Natural theme
+// --------------------------------------------------------------------------
+
+.leaflet-control-attribution {
+  background: rgba(255, 252, 245, 0.9) !important;
+  font-size: 10px !important;
+  padding: 2px 6px !important;
+  border-radius: $radius !important;
+  margin: 4px !important;
+  border: 1px solid rgba(45, 122, 79, 0.1) !important;
+  
+  @media (prefers-color-scheme: dark) {
+    background: rgba(30, 41, 59, 0.9) !important;
+    border: 1px solid rgba(61, 155, 109, 0.15) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+  
+  a {
+    color: #2d7a4f !important;
+    
+    &:hover {
+      color: #1e5a3a !important;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      color: #3d9b6d !important;
+      
+      &:hover {
+        color: #4dab7d !important;
+      }
+    }
+  }
+}
+
+// View All Button
+.view-all-container {
+  text-align: center;
+  margin-top: $spacing-8;
+}
+
+.view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  padding: $spacing-3 $spacing-6;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: $font-medium;
+  border-radius: $radius-lg;
+  text-decoration: none;
+  transition: all $transition-fast;
+  box-shadow: var(--shadow);
+  
+  &:hover {
+    background-color: var(--primary-hover);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+// Loading State (from original - BEST)
+// --------------------------------------------------------------------------
+
+.map-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  z-index: 10;
+  
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #2d7a4f;  // Forest green spinner
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// Responsive (from original - BEST)
+// --------------------------------------------------------------------------
+
+@media (max-width: $breakpoint-md) {
+  .map-header {
+    padding: 0 $spacing-4 $spacing-4;
+    
+    h2 {
+      font-size: $font-xl;
+    }
+    
+    p {
+      font-size: $font-sm;
+    }
+    
+    .map-instruction {
+      font-size: $font-xs;
+      padding: $spacing-2 $spacing-3;
+    }
+  }
+  
+  #map-wrapper {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    margin: 0;
+  }
+}

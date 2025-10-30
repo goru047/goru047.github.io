@@ -24,3 +24,8 @@ This travel blog features an interactive map where you can explore my journeys b
 ### Get in Touch
 
 Want to connect? Check out my [contact page](/contact/) or find me on social media!
+
+### Data Sources
+
+- Country Data: [Natural Earth](https://www.naturalearthdata.com)
+- City coordinates: [SimpleMaps](https://simplemaps.com/data/world-cities)

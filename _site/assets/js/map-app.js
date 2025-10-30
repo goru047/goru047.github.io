@@ -76,13 +76,49 @@
       maxZoom: mapConfig.maxZoom,
       zoomControl: true
     });
+
     
-    // Add tile layer
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors',
-      maxZoom: 19
+    
+    // // Add tile layer - fixed to use OpenStreetMap tiles
+    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //   attribution: '© OpenStreetMap contributors',
+    //   maxZoom: 19
+    // }).addTo(config.map);
+
+    // // Add tile layer - CartoDB Positron (Minimal style) - light theme
+    // L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    //   attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>',
+    //   subdomains: 'abcd',
+    //   maxZoom: 19
+    // }).addTo(config.map);
+
+    // // Add tile layer - CartoDB Dark Matter (Dark style)
+    // L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    //   attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>',
+    //   subdomains: 'abcd',
+    //   maxZoom: 19
+    // }).addTo(config.map);
+    
+    // 6/10 Add tile layer - Stamen Terrain (Natural landscape) - looks good for my case
+    L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.png', {
+      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> — Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      subdomains: 'abcd',
+      maxZoom: 18
     }).addTo(config.map);
-    
+
+    // // Add tile layer - Stamen Toner Lite (Ink style)
+    // L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png', {
+    //   attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> — Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    //   subdomains: 'abcd',
+    //   maxZoom: 18
+    // }).addTo(config.map);
+
+    // // 5/10 Add tile layer - Esri Street Map (Professional style) - looks good for my case
+    // L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+    //   attribution: 'Tiles © Esri — Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom',
+    //   maxZoom: 18
+    // }).addTo(config.map);
+
     // Load map data
     loadMapData();
     
@@ -275,8 +311,11 @@
   function loadCities(countryName) {
     const country = config.mapData.countries[countryName];
     if (!country || !country.cities) {
+      console.log(`No cities for ${countryName}`);
       return;
     }
+    
+    console.log(`Loading ${country.cities.length} cities for ${countryName}`);
     
     // Clear existing city layer
     if (config.layers.cities) {
@@ -288,25 +327,69 @@
     
     country.cities.forEach(cityName => {
       const city = config.mapData.cities[cityName];
-      if (!city) return;
+      if (!city) {
+        console.warn(`City data not found: ${cityName}`);
+        return;
+      }
       
+      // Create city marker with better styling
       const marker = L.circleMarker(city.coordinates, {
-        radius: 8,
-        fillColor: city.visited ? window.siteData.colors.visited : window.siteData.colors.unvisited,
+        radius: 10,
+        fillColor: city.visited ? '#3b82f6' : window.siteData.colors.unvisited,
         fillOpacity: 0.8,
         color: '#ffffff',
-        weight: 2
+        weight: 3,
+        className: 'city-marker'
       });
       
-      marker.bindTooltip(cityName);
+      // Tooltip
+      marker.bindTooltip(cityName, {
+        permanent: false,
+        direction: 'top',
+        className: 'city-tooltip',
+        offset: [0, -10]
+      });
       
+      // Hover effects
+      marker.on('mouseover', function(e) {
+        marker.setStyle({
+          radius: 12,
+          fillOpacity: 1,
+          weight: 4
+        });
+        marker.openTooltip();
+      });
+      
+      marker.on('mouseout', function(e) {
+        marker.setStyle({
+          radius: 10,
+          fillOpacity: 0.8,
+          weight: 3
+        });
+      });
+      
+      // Click handler for visited cities
       if (city.visited) {
-        marker.on('click', function() {
+        marker.on('click', function(e) {
+          L.DomEvent.stopPropagation(e); // Prevent country click
           zoomToCity(cityName, city);
         });
+        
+        // // Add popup with city info
+        // marker.bindPopup(`
+        //   <div class="city-popup">
+        //     <h3>${cityName}</h3>
+        //     <p>${country.cities.length > 1 ? countryName : ''}</p>
+        //     <button onclick="window.dispatchEvent(new CustomEvent('cityClick', {detail: '${cityName}'}))" 
+        //             style="padding: 8px 16px; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer; margin-top: 8px;">
+        //       Explore City
+        //     </button>
+        //   </div>
+        // `);
       }
       
       config.layers.cities.addLayer(marker);
+      console.log(`✓ Added city marker: ${cityName}`);
     });
   }
   
@@ -317,8 +400,11 @@
   function loadPOIs(cityName) {
     const city = config.mapData.cities[cityName];
     if (!city || !city.pois) {
+      console.log(`No POIs for ${cityName}`);
       return;
     }
+    
+    console.log(`Loading ${city.pois.length} POIs for ${cityName}`);
     
     // Clear existing POI layer
     if (config.layers.pois) {
@@ -328,27 +414,107 @@
     // Create layer group for POIs
     config.layers.pois = L.layerGroup().addTo(config.map);
     
-    city.pois.forEach(poiId => {
+    city.pois.forEach((poiId, index) => {
       const poi = config.mapData.pois[poiId];
-      if (!poi) return;
+      if (!poi) {
+        console.warn(`POI data not found: ${poiId}`);
+        return;
+      }
       
+      // Create custom POI marker with icon
       const marker = L.marker(poi.coordinates, {
         icon: L.divIcon({
           className: 'poi-marker',
-          html: '<div style="background: ' + window.siteData.colors.visited + '; width: 30px; height: 30px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>',
-          iconSize: [30, 30],
-          iconAnchor: [15, 15]
-        })
+          html: `
+            <div class="poi-marker-inner" style="
+              background: linear-gradient(135deg, #2d7a4f 0%, rgba(45, 122, 79, 0.15) 100%);
+              width: 36px;
+              height: 36px;
+              border-radius: 50% 50% 50% 0;
+              border: 3px solid white;
+              box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+              transform: rotate(-45deg);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            ">
+              <span style="
+                transform: rotate(45deg);
+                color: white;
+                font-size: 16px;
+                font-weight: bold;
+              ">${index + 1}</span>
+            </div>
+          `,
+          iconSize: [36, 36],
+          iconAnchor: [18, 36],
+          popupAnchor: [0, -36]
+        }),
+        riseOnHover: true
       });
       
+      // Tooltip
+      marker.bindTooltip(poi.name, {
+        permanent: false,
+        direction: 'top',
+        className: 'poi-tooltip',
+        offset: [0, -10]
+      });
+      
+      // Detailed popup
       marker.bindPopup(`
-        <div style="padding: 10px;">
-          <h3 style="margin: 0 0 8px 0; font-size: 16px;">${poi.name}</h3>
-          <p style="margin: 0; color: #666; font-size: 14px;">${poi.city}, ${poi.country}</p>
+        <div class="poi-popup" style="min-width: 200px;">
+          <div style="
+            // background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px;
+            margin: -12px -12px 12px -12px;
+            border-radius: 8px 8px 0 0;
+          ">
+            <h3 style="margin: 0; font-size: 18px; font-weight: 600;">${poi.name}</h3>
+          </div>
+          <div style="padding: 0 4px;">
+            <p style="margin: 0 0 8px 0; color: #666; font-size: 14px; line-height: 1.5;">
+              ${poi.description || 'Point of interest'}
+            </p>
+            <div style="
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              color: #888;
+              font-size: 13px;
+              margin-top: 8px;
+              padding-top: 8px;
+              border-top: 1px solid #eee;
+            ">
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+              </svg>
+              <span>${poi.city}, ${poi.country}</span>
+            </div>
+          </div>
         </div>
-      `);
+      `, {
+        maxWidth: 300,
+        className: 'poi-popup-container'
+      });
+      
+      // Hover effects
+      marker.on('mouseover', function() {
+        marker.openTooltip();
+      });
+      
+      // Click to center on POI
+      marker.on('click', function(e) {
+        L.DomEvent.stopPropagation(e);
+        config.map.setView(poi.coordinates, 16, {
+          animate: true,
+          duration: 0.5
+        });
+      });
       
       config.layers.pois.addLayer(marker);
+      console.log(`✓ Added POI marker: ${poi.name}`);
     });
   }
   
@@ -432,21 +598,54 @@
     config.currentLevel = 'city';
     config.currentCity = cityName;
     
+    console.log(`Zooming to city: ${cityName}`);
+    
     // Update breadcrumb
     updateBreadcrumb();
     
-    // Clear POI layer
+    // Clear POI layer (will reload after zoom)
     if (config.layers.pois) {
       config.map.removeLayer(config.layers.pois);
     }
     
-    // Zoom to city
-    config.map.setView(cityData.coordinates, 13);
+    // Highlight the selected city marker
+    if (config.layers.cities) {
+      config.layers.cities.eachLayer(function(layer) {
+        // Reset all city markers
+        if (layer.setStyle) {
+          const city = config.mapData.cities[config.currentCountry];
+          layer.setStyle({
+            radius: 10,
+            fillOpacity: 0.8,
+            weight: 3
+          });
+        }
+      });
+      
+      // Highlight selected city
+      config.layers.cities.eachLayer(function(layer) {
+        if (layer.getTooltip && layer.getTooltip()?.getContent() === cityName) {
+          layer.setStyle({
+            radius: 14,
+            fillColor: '#f59e0b', // Orange for selected city
+            fillOpacity: 1,
+            weight: 4
+          });
+        }
+      });
+    }
     
-    // Load POIs
-    setTimeout(() => loadPOIs(cityName), 300);
+    // Zoom to city with smooth animation
+    config.map.setView(cityData.coordinates, 13, {
+      animate: true,
+      duration: 0.8,
+      easeLinearity: 0.5
+    });
     
-    // Update blog cards
+    // Load POIs after zoom animation completes
+    setTimeout(() => loadPOIs(cityName), 500);
+    
+    // Update blog cards to show city-specific posts
     loadBlogCards(config.currentCountry, cityName);
   }
   
@@ -494,6 +693,26 @@
   // Breadcrumb Navigation
   // ==========================================================================
   
+  // function updateBreadcrumb() {
+  //   const breadcrumb = document.getElementById('breadcrumb');
+  //   if (!breadcrumb) return;
+    
+  //   let html = '<button class="breadcrumb-item" data-level="world">🌍 World</button>';
+    
+  //   if (config.currentCountry) {
+  //     html += `<button class="breadcrumb-item" data-level="country" data-name="${config.currentCountry}">${config.currentCountry}</button>`;
+  //   }
+    
+  //   if (config.currentCity) {
+  //     html += `<button class="breadcrumb-item active" data-level="city">${config.currentCity}</button>`;
+  //   } else if (config.currentCountry) {
+  //     html = html.replace('data-level="country"', 'class="breadcrumb-item active" data-level="country"');
+  //   } else {
+  //     html = html.replace('data-level="world"', 'class="breadcrumb-item active" data-level="world"');
+  //   }
+    
+  //   breadcrumb.innerHTML = html;
+  // }
   function updateBreadcrumb() {
     const breadcrumb = document.getElementById('breadcrumb');
     if (!breadcrumb) return;
@@ -501,10 +720,12 @@
     let html = '<button class="breadcrumb-item" data-level="world">🌍 World</button>';
     
     if (config.currentCountry) {
+      html += '<span class="breadcrumb-separator">›</span>'; // ✅ ADD ARROW
       html += `<button class="breadcrumb-item" data-level="country" data-name="${config.currentCountry}">${config.currentCountry}</button>`;
     }
     
     if (config.currentCity) {
+      html += '<span class="breadcrumb-separator">›</span>'; // ✅ ADD ARROW
       html += `<button class="breadcrumb-item active" data-level="city">${config.currentCity}</button>`;
     } else if (config.currentCountry) {
       html = html.replace('data-level="country"', 'class="breadcrumb-item active" data-level="country"');
@@ -627,6 +848,15 @@
         if (countryData) {
           zoomToCountry(countryName, countryData);
         }
+      }
+    });
+    
+    // City popup button clicks (custom event from popup)
+    window.addEventListener('cityClick', function(e) {
+      const cityName = e.detail;
+      const cityData = config.mapData?.cities[cityName];
+      if (cityData) {
+        zoomToCity(cityName, cityData);
       }
     });
     
