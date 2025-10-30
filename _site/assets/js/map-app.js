@@ -693,6 +693,26 @@
   // Breadcrumb Navigation
   // ==========================================================================
   
+  // function updateBreadcrumb() {
+  //   const breadcrumb = document.getElementById('breadcrumb');
+  //   if (!breadcrumb) return;
+    
+  //   let html = '<button class="breadcrumb-item" data-level="world">🌍 World</button>';
+    
+  //   if (config.currentCountry) {
+  //     html += `<button class="breadcrumb-item" data-level="country" data-name="${config.currentCountry}">${config.currentCountry}</button>`;
+  //   }
+    
+  //   if (config.currentCity) {
+  //     html += `<button class="breadcrumb-item active" data-level="city">${config.currentCity}</button>`;
+  //   } else if (config.currentCountry) {
+  //     html = html.replace('data-level="country"', 'class="breadcrumb-item active" data-level="country"');
+  //   } else {
+  //     html = html.replace('data-level="world"', 'class="breadcrumb-item active" data-level="world"');
+  //   }
+    
+  //   breadcrumb.innerHTML = html;
+  // }
   function updateBreadcrumb() {
     const breadcrumb = document.getElementById('breadcrumb');
     if (!breadcrumb) return;
@@ -700,10 +720,12 @@
     let html = '<button class="breadcrumb-item" data-level="world">🌍 World</button>';
     
     if (config.currentCountry) {
+      html += '<span class="breadcrumb-separator">›</span>'; // ✅ ADD ARROW
       html += `<button class="breadcrumb-item" data-level="country" data-name="${config.currentCountry}">${config.currentCountry}</button>`;
     }
     
     if (config.currentCity) {
+      html += '<span class="breadcrumb-separator">›</span>'; // ✅ ADD ARROW
       html += `<button class="breadcrumb-item active" data-level="city">${config.currentCity}</button>`;
     } else if (config.currentCountry) {
       html = html.replace('data-level="country"', 'class="breadcrumb-item active" data-level="country"');
