@@ -200,9 +200,13 @@ $z-tooltip: 1070;
 // Map Specific
 // --------------------------------------------------------------------------
 
-$map-height-mobile: 400px;
-$map-height-tablet: 500px;
-$map-height-desktop: 600px;
+// $map-height-mobile: 400px;
+// $map-height-tablet: 500px;
+// $map-height-desktop: 600px;
+
+$map-height-mobile: 350px;   // Reduced by 50px
+$map-height-tablet: 450px;   // Reduced by 50px
+$map-height-desktop: 500px;  // Reduced by 100px
 
 // Header & Footer
 // --------------------------------------------------------------------------
