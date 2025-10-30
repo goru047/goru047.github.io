@@ -99,19 +99,19 @@
     //   maxZoom: 19
     // }).addTo(config.map);
     
-    // 6/10 Add tile layer - Stamen Terrain (Natural landscape) - looks good for my case
-    L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.png', {
-      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> — Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      subdomains: 'abcd',
-      maxZoom: 18
-    }).addTo(config.map);
-
-    // // Add tile layer - Stamen Toner Lite (Ink style)
-    // L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png', {
+    // // 6/10 Add tile layer - Stamen Terrain (Natural landscape) - looks good for my case when tiles are not being loaded (issue)
+    // L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.png', {
     //   attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> — Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     //   subdomains: 'abcd',
     //   maxZoom: 18
     // }).addTo(config.map);
+
+    // Add tile layer - Stamen Toner Lite (Ink style)
+    L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png', {
+      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> — Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      subdomains: 'abcd',
+      maxZoom: 18
+    }).addTo(config.map);
 
     // // 5/10 Add tile layer - Esri Street Map (Professional style) - looks good for my case
     // L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
