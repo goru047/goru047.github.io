@@ -1,0 +1,438 @@
+{
+  "countries": {
+    "Japan": {
+      "visited": true,
+      "center": [
+        36.2048,
+        138.2529
+      ],
+      "bounds": [
+        [
+          24.3966,
+          122.9346
+        ],
+        [
+          45.5226,
+          153.987
+        ]
+      ],
+      "cities": [
+        "Tokyo"
+      ]
+    },
+    "France": {
+      "visited": true,
+      "center": [
+        46.2276,
+        2.2137
+      ],
+      "bounds": [
+        [
+          41.3253,
+          -5.1406
+        ],
+        [
+          51.0891,
+          9.6625
+        ]
+      ],
+      "cities": [
+        "Paris",
+        "Rome",
+        "Barcelona"
+      ]
+    },
+    "Italy": {
+      "visited": true,
+      "center": [
+        41.8719,
+        12.5674
+      ],
+      "bounds": [
+        [
+          36.6199,
+          6.6267
+        ],
+        [
+          47.092,
+          18.5203
+        ]
+      ],
+      "cities": [
+        "Paris",
+        "Rome",
+        "Barcelona"
+      ]
+    },
+    "Spain": {
+      "visited": true,
+      "center": [
+        40.4637,
+        -3.7492
+      ],
+      "bounds": [
+        [
+          27.6377,
+          -18.1606
+        ],
+        [
+          43.7913,
+          4.3271
+        ]
+      ],
+      "cities": [
+        "Paris",
+        "Rome",
+        "Barcelona"
+      ]
+    },
+    "United States of America": {
+      "visited": true,
+      "center": [
+        0,
+        0
+      ],
+      "bounds": null,
+      "cities": [
+        "New York City"
+      ]
+    }
+  },
+  "cities": {
+    "Tokyo": {
+      "visited": true,
+      "coordinates": [
+        35.6762,
+        139.6503
+      ],
+      "country": "Japan",
+      "pois": [
+        "senso-ji-temple-2024-02-20-tokyo-adventure",
+        "shibuya-crossing-2024-02-20-tokyo-adventure",
+        "tokyo-skytree-2024-02-20-tokyo-adventure"
+      ]
+    },
+    "Paris": {
+      "visited": true,
+      "coordinates": [
+        48.8566,
+        2.3522
+      ],
+      "country": "France",
+      "pois": [
+        "eiffel-tower-2024-01-15-exploring-paris",
+        "louvre-museum-2024-01-15-exploring-paris",
+        "notre-dame-cathedral-2024-01-15-exploring-paris"
+      ]
+    },
+    "Rome": {
+      "visited": true,
+      "coordinates": [
+        41.9028,
+        12.4964
+      ],
+      "country": "France",
+      "pois": []
+    },
+    "Barcelona": {
+      "visited": true,
+      "coordinates": [
+        41.3874,
+        2.1686
+      ],
+      "country": "France",
+      "pois": [
+        "sagrada-familia-2024-04-05-barcelona-spain",
+        "park-güell-2024-04-05-barcelona-spain",
+        "la-rambla-2024-04-05-barcelona-spain"
+      ]
+    },
+    "New York City": {
+      "visited": true,
+      "coordinates": [
+        40.7128,
+        -74.006
+      ],
+      "country": "United States of America",
+      "pois": [
+        "statue-of-liberty-2024-03-10-new-york-city",
+        "central-park-2024-03-10-new-york-city",
+        "times-square-2024-03-10-new-york-city",
+        "brooklyn-bridge-2024-03-10-new-york-city"
+      ]
+    }
+  },
+  "pois": {
+    "senso-ji-temple-2024-02-20-tokyo-adventure": {
+      "name": "Senso-ji Temple",
+      "coordinates": [
+        35.7148,
+        139.7967
+      ],
+      "description": "Ancient Buddhist temple in Asakusa",
+      "city": "Tokyo",
+      "country": "Japan"
+    },
+    "shibuya-crossing-2024-02-20-tokyo-adventure": {
+      "name": "Shibuya Crossing",
+      "coordinates": [
+        35.6595,
+        139.7004
+      ],
+      "description": "World's busiest pedestrian crossing",
+      "city": "Tokyo",
+      "country": "Japan"
+    },
+    "tokyo-skytree-2024-02-20-tokyo-adventure": {
+      "name": "Tokyo Skytree",
+      "coordinates": [
+        35.7101,
+        139.8107
+      ],
+      "description": "Tallest structure in Japan",
+      "city": "Tokyo",
+      "country": "Japan"
+    },
+    "statue-of-liberty-2024-03-10-new-york-city": {
+      "name": "Statue of Liberty",
+      "coordinates": [
+        40.6892,
+        -74.0445
+      ],
+      "description": "Iconic symbol of freedom",
+      "city": "New York City",
+      "country": "United States of America"
+    },
+    "central-park-2024-03-10-new-york-city": {
+      "name": "Central Park",
+      "coordinates": [
+        40.7829,
+        -73.9654
+      ],
+      "description": "Massive urban park in Manhattan",
+      "city": "New York City",
+      "country": "United States of America"
+    },
+    "times-square-2024-03-10-new-york-city": {
+      "name": "Times Square",
+      "coordinates": [
+        40.758,
+        -73.9855
+      ],
+      "description": "Bustling commercial intersection",
+      "city": "New York City",
+      "country": "United States of America"
+    },
+    "brooklyn-bridge-2024-03-10-new-york-city": {
+      "name": "Brooklyn Bridge",
+      "coordinates": [
+        40.7061,
+        -73.9969
+      ],
+      "description": "Iconic suspension bridge",
+      "city": "New York City",
+      "country": "United States of America"
+    },
+    "eiffel-tower-2024-01-15-exploring-paris": {
+      "name": "Eiffel Tower",
+      "coordinates": [
+        48.8584,
+        2.2945
+      ],
+      "description": "Iconic iron lattice tower",
+      "city": "Paris",
+      "country": "France"
+    },
+    "louvre-museum-2024-01-15-exploring-paris": {
+      "name": "Louvre Museum",
+      "coordinates": [
+        48.8606,
+        2.3376
+      ],
+      "description": "World's largest art museum",
+      "city": "Paris",
+      "country": "France"
+    },
+    "notre-dame-cathedral-2024-01-15-exploring-paris": {
+      "name": "Notre-Dame Cathedral",
+      "coordinates": [
+        48.853,
+        2.3499
+      ],
+      "description": "Medieval Catholic cathedral",
+      "city": "Paris",
+      "country": "France"
+    },
+    "sagrada-familia-2024-04-05-barcelona-spain": {
+      "name": "Sagrada Familia",
+      "coordinates": [
+        41.4036,
+        2.1744
+      ],
+      "description": "Gaudí's unfinished masterpiece",
+      "city": "Barcelona",
+      "country": "Spain"
+    },
+    "park-güell-2024-04-05-barcelona-spain": {
+      "name": "Park Güell",
+      "coordinates": [
+        41.4145,
+        2.1527
+      ],
+      "description": "Colorful public park with mosaic art",
+      "city": "Barcelona",
+      "country": "Spain"
+    },
+    "la-rambla-2024-04-05-barcelona-spain": {
+      "name": "La Rambla",
+      "coordinates": [
+        41.3818,
+        2.1685
+      ],
+      "description": "Famous tree-lined pedestrian street",
+      "city": "Barcelona",
+      "country": "Spain"
+    }
+  },
+  "blogPosts": {
+    "2024-02-20-tokyo-adventure": {
+      "id": "2024-02-20-tokyo-adventure",
+      "title": "Tokyo: Where Tradition Meets Future",
+      "date": "2024-02-20",
+      "excerpt": "An incredible journey through Tokyo's neon-lit streets, ancient temples, and world-class cuisine.",
+      "featured_image": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800",
+      "tags": [
+        "tokyo",
+        "japan",
+        "culture",
+        "technology"
+      ],
+      "url": "/blog/2024/02/20/tokyo-adventure/",
+      "countries": [
+        "Japan"
+      ],
+      "cities": [
+        "Tokyo"
+      ],
+      "pois": [
+        "senso-ji-temple-2024-02-20-tokyo-adventure",
+        "shibuya-crossing-2024-02-20-tokyo-adventure",
+        "tokyo-skytree-2024-02-20-tokyo-adventure"
+      ]
+    },
+    "2025-02-24-multicity": {
+      "id": "2025-02-24-multicity",
+      "title": "European Adventure: Paris, Rome & Barcelona",
+      "date": "2024-11-01",
+      "excerpt": "A whirlwind 10-day tour through three of Europe's most iconic cities - Paris, Rome, and Barcelona. From the Eiffel Tower to the Colosseum to Sagrada Familia.",
+      "featured_image": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800",
+      "tags": [
+        "paris",
+        "rome",
+        "barcelona",
+        "europe",
+        "culture"
+      ],
+      "url": "/blog/2024/11/01/multicity/",
+      "countries": [
+        "France",
+        "Italy",
+        "Spain"
+      ],
+      "cities": [
+        "Paris",
+        "Rome",
+        "Barcelona"
+      ],
+      "pois": []
+    },
+    "2024-03-10-new-york-city": {
+      "id": "2024-03-10-new-york-city",
+      "title": "A Week in New York City: The City That Never Sleeps",
+      "date": "2024-03-10",
+      "excerpt": "From Central Park to Brooklyn, experiencing the energy and diversity of America's greatest city.",
+      "featured_image": "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800",
+      "tags": [
+        "new-york",
+        "usa",
+        "urban",
+        "culture"
+      ],
+      "url": "/blog/2024/03/10/new-york-city/",
+      "countries": [
+        "United States of America"
+      ],
+      "cities": [
+        "New York City"
+      ],
+      "pois": [
+        "statue-of-liberty-2024-03-10-new-york-city",
+        "central-park-2024-03-10-new-york-city",
+        "times-square-2024-03-10-new-york-city",
+        "brooklyn-bridge-2024-03-10-new-york-city"
+      ]
+    },
+    "2024-01-15-exploring-paris": {
+      "id": "2024-01-15-exploring-paris",
+      "title": "Exploring the Magic of Paris",
+      "date": "2024-01-15",
+      "excerpt": "From the Eiffel Tower to hidden cafés, discovering the charm of the City of Light.",
+      "featured_image": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800",
+      "tags": [
+        "paris",
+        "france",
+        "culture",
+        "food"
+      ],
+      "url": "/blog/2024/01/15/exploring-paris/",
+      "countries": [
+        "France"
+      ],
+      "cities": [
+        "Paris"
+      ],
+      "pois": [
+        "eiffel-tower-2024-01-15-exploring-paris",
+        "louvre-museum-2024-01-15-exploring-paris",
+        "notre-dame-cathedral-2024-01-15-exploring-paris"
+      ]
+    },
+    "2024-04-05-barcelona-spain": {
+      "id": "2024-04-05-barcelona-spain",
+      "title": "Barcelona: Gaudí, Tapas, and Mediterranean Magic",
+      "date": "2024-04-05",
+      "excerpt": "Discovering Barcelona's unique architecture, vibrant culture, and incredible food scene.",
+      "featured_image": "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800",
+      "tags": [
+        "barcelona",
+        "spain",
+        "architecture",
+        "beach"
+      ],
+      "url": "/blog/2024/04/05/barcelona-spain/",
+      "countries": [
+        "Spain"
+      ],
+      "cities": [
+        "Barcelona"
+      ],
+      "pois": [
+        "sagrada-familia-2024-04-05-barcelona-spain",
+        "park-güell-2024-04-05-barcelona-spain",
+        "la-rambla-2024-04-05-barcelona-spain"
+      ]
+    },
+    "2025-10-29-my-day": {
+      "id": "2025-10-29-my-day",
+      "title": "Untitled",
+      "date": "",
+      "excerpt": "",
+      "featured_image": "/assets/images/sleipnir.jpg",
+      "tags": [],
+      "url": "/blog/2025-10-29-my-day/",
+      "countries": [],
+      "cities": [],
+      "pois": []
+    }
+  }
+}
