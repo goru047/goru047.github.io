@@ -10,6 +10,11 @@
   <link rel="android-chrome" sizes="180x180" href="/assets/images/favicons/android-chrome-192x192.png">
   <link rel="android-chrome" sizes="512x512" href="/assets/images/favicons/android-chrome-512x512.png">
   <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+
+  <!-- {% if site.google_analytics and jekyll.environment == 'production' %} -->
+  {% if site.google_analytics %}
+    {% include google-analytics.html %}
+  {% endif %}
 </head>
 <body>
   {% include header.html %}

@@ -64,6 +64,9 @@ social:
   twitter: "yourusername"
   instagram: "yourusername"
 
+# Google Analytics
+google_analytics: G-FYN8G39ELN  # Replace with your ID
+
 # Theme-specific settings
 theme_config:
   default_theme: "dark" # "light" or "dark"
