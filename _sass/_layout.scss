@@ -52,6 +52,67 @@
   }
 }
 
+// Mobile Navigation
+.nav-menu {
+  display: flex;
+  gap: 1rem;
+  
+  @media (max-width: $breakpoint-md) {
+    // Hidden by default on mobile
+    display: none;
+    
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--bg-color);
+    border-top: 1px solid var(--border-color);
+    flex-direction: column;
+    padding: 1rem;
+    z-index: 1000;
+    
+    // Show when active
+    &.active {
+      display: flex !important;
+    }
+  }
+  
+  li {
+    @media (max-width: $breakpoint-md) {
+      border-bottom: 1px solid var(--border-color);
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+  
+  a {
+    @media (max-width: $breakpoint-md) {
+      display: block;
+      padding: 1rem;
+      font-size: 1.125rem;
+    }
+  }
+}
+
+// Hamburger animation
+.hamburger {
+  &.active {
+    span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+  }
+}
+
 // Site Branding
 .site-branding {
   display: flex;
