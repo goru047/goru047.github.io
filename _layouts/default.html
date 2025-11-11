@@ -25,10 +25,14 @@
   {% include footer.html %}
   
   <!-- Theme toggle script -->
-  <script>
+  <!-- <script>
     // Initialize theme from localStorage or default
     const savedTheme = localStorage.getItem('theme') || '{{ site.theme_config.default_theme }}';
     document.documentElement.setAttribute('data-theme', savedTheme);
-  </script>
+  </script> -->
+  <script src="{{ '/assets/js/menu.js' | relative_url }}"></script>
+  {% if page.url == '/' %}
+    <script src="{{ '/assets/js/map-app.js' | relative_url }}"></script>
+  {% endif %}
 </body>
 </html>
