@@ -52,67 +52,6 @@
   }
 }
 
-// Mobile Navigation
-.nav-menu {
-  display: flex;
-  gap: 1rem;
-  
-  @media (max-width: $breakpoint-md) {
-    // Hidden by default on mobile
-    display: none;
-    
-    position: fixed;
-    top: 70px;
-    left: 0;
-    right: 0;
-    background: var(--bg-color);
-    border-top: 1px solid var(--border-color);
-    flex-direction: column;
-    padding: 1rem;
-    z-index: 1000;
-    
-    // Show when active
-    &.active {
-      display: flex !important;
-    }
-  }
-  
-  li {
-    @media (max-width: $breakpoint-md) {
-      border-bottom: 1px solid var(--border-color);
-      
-      &:last-child {
-        border-bottom: none;
-      }
-    }
-  }
-  
-  a {
-    @media (max-width: $breakpoint-md) {
-      display: block;
-      padding: 1rem;
-      font-size: 1.125rem;
-    }
-  }
-}
-
-// Hamburger animation
-.hamburger {
-  &.active {
-    span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    
-    span:nth-child(2) {
-      opacity: 0;
-    }
-    
-    span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -6px);
-    }
-  }
-}
-
 // Site Branding
 .site-branding {
   display: flex;
@@ -151,11 +90,8 @@
 // --------------------------------------------------------------------------
 
 .site-nav {
+  // Default: hidden on mobile (mobile-first approach)
   display: none;
-  
-  @media (min-width: $breakpoint-md) {
-    display: block;
-  }
   
   .nav-list {
     display: flex;
@@ -172,6 +108,7 @@
     font-weight: $font-medium;
     border-radius: $radius;
     transition: all $transition-fast;
+    text-decoration: none;
     
     &:hover {
       color: var(--text-color);
@@ -185,11 +122,60 @@
   }
 }
 
-// Mobile Navigation
+// Desktop Navigation (>= 768px)
+@media (min-width: $breakpoint-md) {
+  .site-nav {
+    display: block !important;
+  }
+}
+
+// Mobile Navigation (< 768px)
+@media (max-width: ($breakpoint-md - 1px)) {
+  
+  // Hide nav by default on mobile
+  .site-nav {
+    display: none !important;
+    position: fixed;
+    top: $header-height;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--surface-color);
+    padding: $spacing-6 $spacing-4;
+    z-index: $z-modal;
+    overflow-y: auto;
+  }
+  
+  // Show when active class is added
+  .site-nav.active {
+    display: block !important;
+  }
+  
+  .nav-list {
+    flex-direction: column !important;
+    gap: 0 !important;
+  }
+  
+  .nav-item {
+    border-bottom: 1px solid var(--border-color);
+    
+    &:first-child {
+      border-top: 1px solid var(--border-color);
+    }
+  }
+  
+  .nav-link {
+    padding: $spacing-4 !important;
+    font-size: $font-lg !important;
+    border-radius: 0 !important;
+  }
+}
+
+// Mobile Menu Toggle
 // --------------------------------------------------------------------------
 
 .mobile-menu-toggle {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   width: 40px;
@@ -198,9 +184,10 @@
   background: none;
   border: none;
   cursor: pointer;
+  z-index: 1001;
   
-  @media (min-width: $breakpoint-md) {
-    display: none;
+  @media (max-width: ($breakpoint-md - 1px)) {
+    display: flex;
   }
 }
 
@@ -218,9 +205,11 @@
   }
 }
 
+// Hamburger animation - supports both .active class and aria-expanded
+.mobile-menu-toggle.active,
 .mobile-menu-toggle[aria-expanded="true"] {
   .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translateY(7px);
+    transform: rotate(45deg) translate(5px, 5px);
   }
   
   .hamburger-line:nth-child(2) {
@@ -228,7 +217,7 @@
   }
   
   .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translateY(-7px);
+    transform: rotate(-45deg) translate(7px, -6px);
   }
 }
 
@@ -245,38 +234,6 @@
   
   &.active {
     display: block;
-  }
-}
-
-// Mobile Menu (when open)
-@media (max-width: ($breakpoint-md - 1px)) {
-  .site-nav {
-    position: fixed;
-    top: $header-height;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--surface-color);
-    padding: $spacing-6 $spacing-4;
-    transform: translateX(-100%);
-    transition: transform $transition-base;
-    z-index: $z-modal;
-    overflow-y: auto;
-    
-    &.active {
-      display: block;
-      transform: translateX(0);
-    }
-    
-    .nav-list {
-      flex-direction: column;
-      gap: $spacing-2;
-    }
-    
-    .nav-link {
-      padding: $spacing-4;
-      font-size: $font-lg;
-    }
   }
 }
 
